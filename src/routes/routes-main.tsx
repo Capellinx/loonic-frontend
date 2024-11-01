@@ -1,5 +1,5 @@
 import ForgotPasswordPage from "@/app/forgot-password";
-import LoginPage from "@/app/login/login";
+import LoginPage from "@/app/login";
 import Page404 from "@/app/page-404";
 import { Route, Routes } from "react-router-dom";
 
