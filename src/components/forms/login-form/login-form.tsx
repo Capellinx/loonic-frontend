@@ -51,6 +51,7 @@ export function LoginForm() {
                         <div className="relative">
                            <Input
                               {...field}
+                              placeholder="example@mail.com"
                               className={form.formState.errors.email ? "border-red-500 pl-10" : "pl-10"}
                            />
                            <MailIcon
