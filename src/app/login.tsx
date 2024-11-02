@@ -23,7 +23,7 @@ export default function LoginPage() {
             <CardFooter className="flex flex-col space-y-2">
                <p>
                   Não possui conta? <a
-                     href="#"
+                     href="/register"
                      className="text-sm text-blue-600 hover:underline"
                   >Cadastre-se</a>
                </p>
