@@ -105,6 +105,13 @@ export function LoginForm() {
                   </FormItem>
                )}
             />
+            <div className="text-right">
+               <a
+                  href="/forgot-password"
+                  className="text-sm text-blue-600 hover:underline">
+                  Esqueceu sua senha?
+               </a>
+            </div>
             <Button type="submit" className="w-full">
                Entrar
             </Button>
