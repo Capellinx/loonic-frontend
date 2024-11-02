@@ -1,11 +1,11 @@
 import { LoginForm } from "@/components/forms/login-form/login-form"
-import { 
-   Card, 
-   CardContent, 
+import {
+   Card,
+   CardContent,
    CardDescription,
-   CardFooter, 
-   CardHeader, 
-   CardTitle 
+   CardFooter,
+   CardHeader,
+   CardTitle
 } from "@/components/ui/card"
 
 
@@ -21,7 +21,12 @@ export default function LoginPage() {
                <LoginForm />
             </CardContent>
             <CardFooter className="flex flex-col space-y-2">
-               <a href="/forgot-password" className="text-sm text-blue-600 hover:underline">Esqueceu sua senha?</a>
+               <p>
+                  Não possui conta? <a
+                     href="#"
+                     className="text-sm text-blue-600 hover:underline"
+                  >Cadastre-se</a>
+               </p>
             </CardFooter>
          </Card>
       </div>
