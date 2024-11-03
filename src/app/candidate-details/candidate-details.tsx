@@ -9,6 +9,7 @@ import { EditCandidateModal } from '@/components/modals/edit-candidate-modal/edi
 import { useModal } from '@/hooks/useModal'
 import { ArrowLeft } from 'lucide-react';
 import { useCandidateDetailDelete } from "./hooks/use-candidate-detail-delete"
+import { renderStatusBadge } from "@/utils/render-status-badge"
 
 export default function CandidateDetailsPage() {
    const { handleDeleteCandidate } = useCandidateDetailDelete()
@@ -53,6 +54,9 @@ export default function CandidateDetailsPage() {
                      <Avatar className="h-48 w-48 mx-auto">
                         <AvatarFallback>{data?.name[0]}</AvatarFallback>
                      </Avatar>
+                     <div className="text-center mt-5">
+                        {renderStatusBadge(data.status)}
+                     </div>
                   </div>
                   <div className="md:w-2/3 space-y-4">
                      <div>
