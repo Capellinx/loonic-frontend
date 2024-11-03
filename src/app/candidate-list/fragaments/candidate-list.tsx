@@ -12,7 +12,7 @@ export function CandidateList() {
 
    return (
       <>
-         {!candidates.length && <p className="text-center">Nenhum candidato encontrado</p>}
+         {!candidates?.length && <p className="text-center">Nenhum candidato encontrado</p>}
 
          {candidates?.map((candidate: Candidate) => (
             <div>
