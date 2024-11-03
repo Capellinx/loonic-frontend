@@ -2,16 +2,27 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { useAuthContext } from '@/hooks/useContext'
-import { Search, User2Icon, PlusIcon } from 'lucide-react'
-import { useState } from 'react'
+import { Search, User2Icon, PlusIcon, ChevronLeft, ChevronRight } from 'lucide-react'
 import { CreateCandidateModal } from '../../components/modals/create-candidate-modal/create-candidate-modal';
 import { useModal } from '@/hooks/useModal'
 import { CandidateList } from "@/app/candidate-list/fragaments/candidate-list"
+import { useSearch } from "@/hooks/useSearchParams"
+import {
+   Pagination,
+   PaginationContent,
+   PaginationItem,
+   PaginationLink,
+   PaginationNext,
+   PaginationPrevious,
+} from "@/components/ui/pagination"
+import { useGetAllCandidates } from "./hooks/use-get-all-candidates"
+
 
 export default function CandidateListPage() {
    const { onOpen } = useModal()
+   const {page, total} = useGetAllCandidates()
    const { userLogoutAndDiscartInformation } = useAuthContext()
-   const [searchTerm, setSearchTerm] = useState('')
+   const { handleSearch } = useSearch()
 
    return (
       <div className="min-h-screen bg-gray-100 py-8 p-3 md:p-0 md:pt-5">
@@ -27,8 +38,7 @@ export default function CandidateListPage() {
                   <Search className="text-gray-400" />
                   <Input
                      placeholder="Buscar por nome ou habilidade"
-                     value={searchTerm}
-                     onChange={(e) => setSearchTerm(e.target.value)}
+                     onChange={e => handleSearch(e.target.value)}
                      className="flex-grow"
                   />
                   <Button variant="outline" onClick={onOpen}>
@@ -43,30 +53,56 @@ export default function CandidateListPage() {
                <div className="space-y-4">
                   <CandidateList />
                </div>
-               {/* <div className="flex items-center justify-between mt-6">
-                  <div className="text-sm text-gray-500">
+               <div className="flex items-center justify-between mt-6">
+                  {/* <div className="text-sm text-gray-500">
                      Mostrando {paginatedCandidates.length} de {filteredCandidates.length} candidatos
-                  </div>
+                  </div> */}
                   <div className="flex items-center space-x-2">
                      <Button
                         variant="outline"
                         size="icon"
-                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                        disabled={currentPage === 1}
+                     // disabled={currentPage === 1}
                      >
                         <ChevronLeft className="h-4 w-4" />
                      </Button>
-                     <span className="text-sm font-medium">{currentPage} de {totalPages}</span>
+                     {/* <span className="text-sm font-medium">{currentPage} de {totalPages}</span> */}
                      <Button
                         variant="outline"
                         size="icon"
-                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                        disabled={currentPage === totalPages}
+                     // disabled={currentPage === totalPages}
                      >
                         <ChevronRight className="h-4 w-4" />
                      </Button>
                   </div>
-               </div> */}
+               </div>
+               <Pagination>
+                  <PaginationContent>
+                     <PaginationItem>
+                        {parseInt(page) > 1 && (
+                           <PaginationPrevious
+                              onClick={() =>
+                                 handleSearch({ page: page ? parseInt(page) - 1 : 1 })
+                              }
+                           />
+                        )}
+                     </PaginationItem>
+                     <PaginationItem>
+                        <PaginationLink>
+                           {page ?? 1} / {total}
+                        </PaginationLink>
+                     </PaginationItem>
+
+                     <PaginationItem>
+                        {parseInt(page) < total && (
+                           <PaginationNext
+                              onClick={() =>
+                                 handleSearch({ page: page ? parseInt(page) + 1 : 2 })
+                              }
+                           />
+                        )}
+                     </PaginationItem>
+                  </PaginationContent>
+               </Pagination>
                <CreateCandidateModal />
             </CardContent>
          </Card>
