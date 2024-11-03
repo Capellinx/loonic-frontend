@@ -1,12 +1,22 @@
+import { useSearch } from "@/hooks/useSearchParams";
 import { api } from "@/service/api";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetAllCandidates() {
+   const { getAllSearchParams } = useSearch()
+
+   const { page, skill, name } = getAllSearchParams();
 
    const { data: candidates } = useQuery({
-      queryKey: ['candidates'],
+      queryKey: ['candidates', page, skill, name],
       queryFn: async () => {
-         const { data } = await api.get('/candidate')
+         const { data } = await api.get('/candidate', {
+            params: {
+               page,
+               skill,
+               name
+            }
+         })
          return data
       },
       refetchOnWindowFocus: true,
@@ -15,8 +25,8 @@ export function useGetAllCandidates() {
 
    return {
       candidates: candidates?.candidates,
-      page: 1,
-      total: candidates?.candidates.total
+      page: candidates?.page,
+      total: candidates?.total
    }
 
 }
