@@ -3,13 +3,15 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Label } from "@/components/ui/label"
-import { Pencil } from 'lucide-react'
+import { Pencil, Trash2 } from 'lucide-react'
 import { useCandidateDetail } from './hooks/use-candidate-detail'
 import { EditCandidateModal } from '@/components/modals/edit-candidate-modal/edit-candidate-modal'
 import { useModal } from '@/hooks/useModal'
 import { ArrowLeft } from 'lucide-react';
+import { useCandidateDetailDelete } from "./hooks/use-candidate-detail-delete"
 
 export default function CandidateDetailsPage() {
+   const { handleDeleteCandidate } = useCandidateDetailDelete()
    const { onOpen } = useModal()
    const { data } = useCandidateDetail()
 
@@ -35,6 +37,12 @@ export default function CandidateDetailsPage() {
                         variant="outline"
                         className="text-zinc-600 border-white hover:bg-white hover:text-blue-600">
                         <Pencil className="mr-2 h-4 w-4" /> Editar
+                     </Button>
+                     <Button
+                        onClick={() => handleDeleteCandidate()}
+                        variant="outline"
+                        className="text-zinc-600 border-white hover:bg-white hover:text-red-600">
+                        <Trash2 className="mr-2 h-4 w-4" /> Excluir
                      </Button>
                   </div>
                </CardTitle>
