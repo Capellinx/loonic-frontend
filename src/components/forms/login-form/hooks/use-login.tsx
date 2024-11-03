@@ -1,11 +1,16 @@
 import { loginSchema } from "@/components/forms/login-form/schema/login-schema";
+import { useAuthContext } from "@/hooks/useContext";
 import { api } from "@/service/api";
 import { useMutation } from "@tanstack/react-query"
 import { AxiosError } from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod"
 
 export function useLogin() {
+   const { saveInformationOnLocalStorage } = useAuthContext()
+   
+   const navigate = useNavigate()
    const toastId = 'register-toast'
 
    const { mutate } = useMutation({
@@ -30,6 +35,7 @@ export function useLogin() {
          toast.success("Login realizado com sucesso!", {
             id: toastId
          })
+         navigate("/candidate-list")
       },
    })
 
@@ -41,11 +47,14 @@ export function useLogin() {
             password
          })
 
+         saveInformationOnLocalStorage(data)
+
          return data
       } catch (error) {
          if (error instanceof AxiosError) {
             throw new Error(error.response?.data.error)
          }
+         throw Error
       }
    }
    return {
