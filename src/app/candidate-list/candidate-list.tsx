@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { useAuthContext } from '@/hooks/useContext'
-import { Search, User2Icon, PlusIcon, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Search, User2Icon, PlusIcon } from 'lucide-react'
 import { CreateCandidateModal } from '../../components/modals/create-candidate-modal/create-candidate-modal';
 import { useModal } from '@/hooks/useModal'
 import { CandidateList } from "@/app/candidate-list/fragaments/candidate-list"
@@ -20,7 +20,7 @@ import { useGetAllCandidates } from "./hooks/use-get-all-candidates"
 
 export default function CandidateListPage() {
    const { onOpen } = useModal()
-   const {page, total} = useGetAllCandidates()
+   const { page, total } = useGetAllCandidates()
    const { userLogoutAndDiscartInformation } = useAuthContext()
    const { handleSearch } = useSearch()
 
@@ -53,33 +53,12 @@ export default function CandidateListPage() {
                <div className="space-y-4">
                   <CandidateList />
                </div>
-               <div className="flex items-center justify-between mt-6">
-                  {/* <div className="text-sm text-gray-500">
-                     Mostrando {paginatedCandidates.length} de {filteredCandidates.length} candidatos
-                  </div> */}
-                  <div className="flex items-center space-x-2">
-                     <Button
-                        variant="outline"
-                        size="icon"
-                     // disabled={currentPage === 1}
-                     >
-                        <ChevronLeft className="h-4 w-4" />
-                     </Button>
-                     {/* <span className="text-sm font-medium">{currentPage} de {totalPages}</span> */}
-                     <Button
-                        variant="outline"
-                        size="icon"
-                     // disabled={currentPage === totalPages}
-                     >
-                        <ChevronRight className="h-4 w-4" />
-                     </Button>
-                  </div>
-               </div>
                <Pagination>
-                  <PaginationContent>
+                  <PaginationContent className="mt-5">
                      <PaginationItem>
                         {parseInt(page) > 1 && (
                            <PaginationPrevious
+                              className="cursor-pointer"
                               onClick={() =>
                                  handleSearch({ page: page ? parseInt(page) - 1 : 1 })
                               }
@@ -95,6 +74,7 @@ export default function CandidateListPage() {
                      <PaginationItem>
                         {parseInt(page) < total && (
                            <PaginationNext
+                              className="cursor-pointer"
                               onClick={() =>
                                  handleSearch({ page: page ? parseInt(page) + 1 : 2 })
                               }
