@@ -1,22 +1,52 @@
-### 2. **Frontend em React.js**
+# Projeto Loonic Frontend
 
-**Objetivo Específico**
+Este repositório contém a implementação do frontend do projeto Loonic. A aplicação é construída com React e se conecta ao backend desenvolvido em Node.js.
 
-Desenvolver uma interface amigável e responsiva em React.js para interação com a API de Gestão de Talentos. A aplicação deve permitir que o RH visualize, filtre, busque, edite e exclua candidatos conforme permitido.
+## Pré-requisitos
 
-**Requisitos Funcionais do Frontend**
+Antes de começar, você precisará ter o seguinte instalado em sua máquina:
 
-- **Tela de Login:**
-    - [ ] Formulário de login com autenticação via JWT.
-    - [ ] Redirecionamento para a tela de lista de candidatos após login bem-sucedido.
-- **Tela de Lista de Candidatos:**
-    - [ ] Exibir uma lista de candidatos cadastrados, mostrando informações básicas como nome, status e principais habilidades.
-    - [ ] Permitir filtragem por status e busca por nome ou habilidades.
-- **Tela de Detalhes do Candidato:**
-    - [ ] Ao clicar em um candidato, abrir uma visualização detalhada com todas as informações cadastradas.
-    - [ ] Opção para editar e salvar as alterações no perfil do candidato.
-- **Formulário de Adição/Edição de Candidato:**
-    - [ ] Permitir que o RH adicione novos candidatos ou edite os existentes.
-    - [ ] Incluir campos como nome, status, habilidades e experiência.
-- **Confirmação de Exclusão:**
-    - [ ] Para administradores, incluir um fluxo de confirmação antes de excluir um candidato.
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
+- [npm](https://www.npmjs.com/) (geralmente vem com o Node.js)
+
+## Configuração do Ambiente
+
+### 1. Clonando o Repositório
+
+Clone este repositório em sua máquina local usando o seguinte comando:
+
+```bash
+git clone https://github.com/Capellinx/loonic-frontend
+cd loonic-frontend
+````
+
+### 2. Configuração das Variáveis de Ambiente
+Crie um arquivo .env na raiz do seu projeto com as seguintes variáveis de ambiente:
+
+```bash
+API_URL="http://localhost:porta" #URL do seu backend
+````
+
+### 3. Instalando Dependências
+Instale as dependências do projeto usando npm:
+```bash
+npm install
+````
+
+### 4. Rodando a Aplicação
+Para iniciar a aplicação em modo de desenvolvimento, execute:
+```bash
+npm run dev
+````
+
+A aplicação estará disponível em http://localhost:5173.
+
+### 5. Acessando a Aplicação
+Após iniciar o frontend, você pode acessar a aplicação em http://localhost:5173. A aplicação se conectará automaticamente ao backend que está rodando em http://localhost:porta.
+
+### Contato
+Se você tiver alguma dúvida ou sugestão, entre em contato comigo:
+
+- Nome: Lucas Capella
+- Email: capellaaa7@gmail.com
+- LinkedIn: [Lucas Capella](https://www.linkedin.com/in/lucas-capella-dev/)
