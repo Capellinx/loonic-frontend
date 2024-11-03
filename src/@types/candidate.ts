@@ -8,13 +8,13 @@ export type Candidate = {
 }
 
 export type CandidateDetails = {
-   id: number
    name: string
    email: string
    phone: string
-   avatar: string
    status: 'DISPONIVEL' | 'EM_PROCESSO' | 'INDISPONIVEL'
-   skills: string[]
+   skills: [
+      {name: string}
+   ]
    experience: string
    education: string
 }
