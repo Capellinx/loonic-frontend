@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Lightbulb } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export default function NotFound404() {
-   function handleGoBack() {
-      window.history.back()
-   }
-
+   const navigate = useNavigate()
+   
    return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white p-4">
          <div className="text-center">
@@ -18,7 +17,7 @@ export default function NotFound404() {
                Não se preocupe, até os talentos mais brilhantes às vezes tomam caminhos inesperados.
             </p>
             <Button
-               onClick={handleGoBack}
+               onClick={() => navigate('/')}
                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
                <ArrowLeft className="mr-2 h-5 w-5" />
