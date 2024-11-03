@@ -10,7 +10,7 @@ export function useGetAllCandidates() {
          return data
       },
       refetchOnWindowFocus: true,
-      refetchInterval: 60 * 1000 // 1 minuto
+      refetchInterval: 5 * 1000 // 5 segundos
    })
 
    return {
