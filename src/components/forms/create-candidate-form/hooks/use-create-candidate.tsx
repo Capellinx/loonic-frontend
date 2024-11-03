@@ -5,6 +5,7 @@ import { createCandidateSchema } from "../schema/create-candidate-schema"
 import { z } from "zod"
 import { api } from "@/service/api"
 import { useModal } from "@/hooks/useModal"
+import { AxiosError } from "axios"
 
 
 export function useCreateCandidate() {
@@ -12,28 +13,29 @@ export function useCreateCandidate() {
    const { user } = useAuthContext()
    const toastId = 'create-candidate-toast'
 
-   const { mutate } = useMutation({
+   const { mutate, isSuccess } = useMutation({
       mutationKey: ["create-candidate"],
       mutationFn: async (data: z.infer<typeof createCandidateSchema>) => {
          await handleSubmit(data)
       },
-      onSuccess: () => {
-         toast.success("Cadastro realizado com sucesso!", {
+      onMutate: () => {
+         toast.loading("Cadastrando candidato...", {
             id: toastId
          })
       },
       onError: (err) => {
          console.log(err);
-         toast.error("Erro ao realizar o cadastro!", {
+         toast.error(err.message, {
             id: toastId
          })
+         return
       },
-      onMutate: () => {
-         onClose()
-         toast.loading("Cadastrando candidato...", {
+      onSuccess: () => {
+         toast.success("Cadastro realizado com sucesso!", {
             id: toastId
          })
-      }
+         onClose()
+      },
    })
 
    async function handleSubmit(payload: z.infer<typeof createCandidateSchema>) {
@@ -46,14 +48,14 @@ export function useCreateCandidate() {
 
          return data
       } catch (error) {
-         if (error instanceof Error) {
-            throw new Error(error.message)
+         if (error instanceof AxiosError) {
+            throw new Error(error.response?.data.error)
          }
-         throw Error
       }
    }
 
    return {
-      handleCreateCandidate: mutate
+      handleCreateCandidate: mutate,
+      isSuccess
    }
 }
