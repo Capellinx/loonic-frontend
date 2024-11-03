@@ -11,7 +11,9 @@ export function CandidateList() {
    const { candidates } = useGetAllCandidates()
 
    return (
-      <> 
+      <>
+         {!candidates.length && <p className="text-center">Nenhum candidato encontrado</p>}
+
          {candidates?.map((candidate: Candidate) => (
             <div>
                <Card key={candidate.id} className="hover:shadow-lg transition-shadow duration-300">
