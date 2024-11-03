@@ -1,5 +1,5 @@
-import CandidateDetailsPage from "@/app/candidate-details";
-import CandidateListPage from "@/app/candidate-list";
+import CandidateDetailsPage from "@/app/candidate-details/candidate-details";
+import CandidateListPage from "@/app/candidate-list/candidate-list";
 import ForgotPasswordPage from "@/app/forgot-password";
 import LoginPage from "@/app/login";
 import Page404 from "@/app/page-404";
